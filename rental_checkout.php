@@ -65,7 +65,7 @@ include "includes/header.php";
                         <option value="30">30 Days</option>
                     </select>
                 </div>
-                <h3 id="total-display" style="color: var(--warning); margin-bottom: 15px;">Total: <?php echo currency_symbol(); ?><?php echo number_format(convert_price($game['rent_price']) * 3, 2); ?></h3>
+                <h3 id="total-display" style="color: var(--warning); margin-bottom: 0.9375rem;">Total: <?php echo currency_symbol(); ?><?php echo number_format(convert_price($game['rent_price']) * 3, 2); ?></h3>
                 <button type="submit" class="btn btn-primary confirm-action" style="background-color: var(--warning); color: #000; width: 100%;">Confirm Rental</button>
             </form>
         <?php endif; ?>

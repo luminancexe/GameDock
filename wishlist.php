@@ -19,7 +19,7 @@ $wishlist_games = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <div class="game-card-content">
                         <h3><?php echo htmlspecialchars($game['title']); ?> <small>(<?php echo htmlspecialchars($game['platform']); ?>)</small></h3>
                         <p class="price"><?php echo $game['platform'] === 'PC' ? format_price($game['purchase_price']) : format_price($game['rent_price'], ' / day'); ?></p>
-                        <div style="display:flex; gap: 10px; margin-top: auto;">
+                        <div style="display:flex; gap: 0.625rem; margin-top: auto;">
                             <a href="game_details.php?id=<?php echo $game['game_id']; ?>" class="btn btn-primary" style="flex:1;">View</a>
                             <a href="wishlist_action.php?game_id=<?php echo $game['game_id']; ?>" class="btn btn-danger" style="flex:1;">Remove</a>
                         </div>

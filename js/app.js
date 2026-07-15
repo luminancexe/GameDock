@@ -111,6 +111,7 @@ document.addEventListener("DOMContentLoaded", () => {
             });
 
             let lastTime = null;
+            let isVisible = true;
             const stepTrack = (track, dt) => {
                 const speed = (track.base + mouseNorm * 0.85) * (dt / 16.67);
                 track.pos -= speed;
@@ -122,6 +123,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 track.el.style.transform = `translateX(${track.pos}px)`;
             };
             const tick = (t) => {
+                if (!isVisible) return;
                 if (lastTime === null) lastTime = t;
                 const dt = Math.min(t - lastTime, 48);
                 lastTime = t;
@@ -129,6 +131,21 @@ document.addEventListener("DOMContentLoaded", () => {
                 requestAnimationFrame(tick);
             };
             requestAnimationFrame(tick);
+
+            // Pause the animation loop entirely while scrolled away from it —
+            // no point burning CPU/GPU on transforms nobody can see.
+            if ("IntersectionObserver" in window) {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach((entry) => {
+                        isVisible = entry.isIntersecting;
+                        if (isVisible) {
+                            lastTime = null;
+                            requestAnimationFrame(tick);
+                        }
+                    });
+                });
+                observer.observe(showcase);
+            }
         }
     }
 });

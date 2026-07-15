@@ -14,7 +14,7 @@ $posts = [
     ],
     [
         'user_id' => 1,
-        'title' => 'GameHub PS5 Rental Review',
+        'title' => 'GameDock PS5 Rental Review',
         'content' => 'Just rented Ghost of Tsushima from here. The process was super smooth and the game is absolutely gorgeous on the PS5. Highly recommend the rental service if you want to try before you buy.'
     ]
 ];

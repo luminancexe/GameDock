@@ -12,7 +12,7 @@ require_once __DIR__ . "/currency.php";
     <meta name="description" content="GameDock is an academic project for buying, selling, and renting digital games.">
     <title>GameDock | Digital Gaming Platform</title>
     <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css?v=<?php echo filemtime(__DIR__ . '/../css/style.css'); ?>">
 </head>
 <body>
     <nav class="navbar" id="navbar">
@@ -35,6 +35,7 @@ require_once __DIR__ . "/currency.php";
                         <li><a href="xbox_rentals.php">Xbox</a></li>
                     </ul>
                 </li>
+                <li><a href="forum.php">Community</a></li>
                 <?php if(isset($_SESSION['user_id'])): ?>
                     <li><a href="wishlist.php">Wishlist</a></li>
                     <li><a href="sell_game.php">Sell Game</a></li>

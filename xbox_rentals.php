@@ -34,12 +34,12 @@ $xbox_games = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                         <?php if(isset($_SESSION['user_id'])): ?>
                             <?php $in_wishlist = in_array($game['game_id'], $wishlist); ?>
-                            <a href="wishlist_action.php?game_id=<?php echo $game['game_id']; ?>" class="btn <?php echo $in_wishlist ? 'btn-danger' : 'btn-primary'; ?>" style="margin-bottom: 10px; display: block; text-align: center; <?php echo $in_wishlist ? '' : 'background-color: var(--border); color: var(--light-bg);'; ?>">
+                            <a href="wishlist_action.php?game_id=<?php echo $game['game_id']; ?>" class="btn <?php echo $in_wishlist ? 'btn-danger' : 'btn-primary'; ?>" style="margin-bottom: 0.625rem; display: block; text-align: center; <?php echo $in_wishlist ? '' : 'background-color: var(--border); color: var(--light-bg);'; ?>">
                                 <?php echo $in_wishlist ? 'Remove from Wishlist' : 'Add to Wishlist'; ?>
                             </a>
 
                             <?php if(in_array($game['game_id'], $active_rentals)): ?>
-                                <div style="background-color: var(--rent); color: #04191b; padding: 10px; border-radius: 5px; text-align: center; margin-bottom: 10px; font-weight: bold;">
+                                <div style="background-color: var(--rent); color: #04191b; padding: 0.625rem; border-radius: 0.3125rem; text-align: center; margin-bottom: 0.625rem; font-weight: bold;">
                                     Currently Rented by You
                                 </div>
                             <?php endif; ?>
