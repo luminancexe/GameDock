@@ -41,6 +41,7 @@ if (isset($_SESSION['user_id'])) {
             <img src="uploads/<?php echo htmlspecialchars($game['image']); ?>" alt="Game Cover" style="width: 100%; border-radius: 8px;" onerror="this.src='https://via.placeholder.com/600x400?text=No+Image'">
         </div>
         <div style="flex: 2; min-width: 300px;">
+            <span class="tag <?php echo $game['platform'] === 'PC' ? 'own' : 'rent'; ?>" style="position: static; display: inline-block; margin-bottom: 12px;"><?php echo $game['platform'] === 'PC' ? 'Own' : 'Rent'; ?></span>
             <h2><?php echo htmlspecialchars($game['title']); ?></h2>
             <p><strong>Platform:</strong> <?php echo htmlspecialchars($game['platform']); ?></p>
             <p><strong>Category:</strong> <?php echo htmlspecialchars($game['category']); ?></p>
@@ -49,29 +50,29 @@ if (isset($_SESSION['user_id'])) {
             
             <div style="margin-top: 20px; padding: 20px; background-color: var(--secondary-bg); border-radius: 8px;">
                 <?php if ($game['platform'] === 'PC'): ?>
-                    <h3 style="color: var(--success);">$<?php echo htmlspecialchars($game['purchase_price']); ?></h3>
+                    <h3 style="color: var(--success);"><?php echo format_price($game['purchase_price']); ?></h3>
                     <?php if ($game['stock'] <= 0): ?>
-                         <button class="btn" style="background-color: #9CA3AF; color: white; cursor: not-allowed;" disabled>Out of Stock</button>
+                         <button class="btn" style="background-color: var(--border); color: var(--muted); cursor: not-allowed;" disabled>Out of Stock</button>
                     <?php else: ?>
                         <a href="buy.php?id=<?php echo $game['game_id']; ?>" class="btn btn-primary">Buy Now</a>
                     <?php endif; ?>
                 <?php else: ?>
-                    <h3 style="color: var(--warning);">$<?php echo htmlspecialchars($game['rent_price']); ?> / day</h3>
+                    <h3 style="color: var(--warning);"><?php echo format_price($game['rent_price'], ' / day'); ?></h3>
                     <?php if ($active_rental): ?>
-                        <div style="background-color: var(--success); color: white; padding: 10px; border-radius: 5px; text-align: center; margin-bottom: 15px; font-weight: bold;">
+                        <div style="background-color: var(--rent); color: #04191b; padding: 10px; border-radius: 5px; text-align: center; margin-bottom: 15px; font-weight: bold;">
                             You are currently renting this game.
                         </div>
                     <?php endif; ?>
 
                     <?php if ($game['stock'] <= 0): ?>
-                         <button class="btn" style="background-color: #9CA3AF; color: white; cursor: not-allowed;" disabled>Out of Stock (Currently Rented Out)</button>
+                         <button class="btn" style="background-color: var(--border); color: var(--muted); cursor: not-allowed;" disabled>Out of Stock (Currently Rented Out)</button>
                     <?php else: ?>
                         <a href="rental_checkout.php?id=<?php echo $game['game_id']; ?>" class="btn btn-primary" style="background-color: var(--warning); color: #000;">Rent Game</a>
                     <?php endif; ?>
                 <?php endif; ?>
                 
                 <?php if(isset($_SESSION['user_id'])): ?>
-                    <a href="wishlist_action.php?game_id=<?php echo $game['game_id']; ?>" class="btn <?php echo $in_wishlist ? 'btn-danger' : 'btn-primary'; ?>" style="margin-left: 10px; background-color: <?php echo $in_wishlist ? 'var(--danger)' : '#4B5563'; ?>;">
+                    <a href="wishlist_action.php?game_id=<?php echo $game['game_id']; ?>" class="btn <?php echo $in_wishlist ? 'btn-danger' : 'btn-primary'; ?>" style="margin-left: 10px; <?php echo $in_wishlist ? '' : 'background-color: var(--border); color: var(--light-bg);'; ?>">
                         <?php echo $in_wishlist ? 'Remove from Wishlist' : 'Add to Wishlist'; ?>
                     </a>
                 <?php endif; ?>

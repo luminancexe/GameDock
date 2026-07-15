@@ -20,15 +20,16 @@ $pc_games = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <div class="game-grid">
         <?php if (count($pc_games) > 0): ?>
             <?php foreach ($pc_games as $game): ?>
-                <div class="game-card">
+                <div class="game-card own">
+                    <span class="tag own">Own</span>
                     <img src="uploads/<?php echo htmlspecialchars($game['image']); ?>" alt="Game Cover" onerror="this.src='https://via.placeholder.com/300x200?text=No+Image'">
                     <div class="game-card-content">
                         <h3><?php echo htmlspecialchars($game['title']); ?></h3>
-                        <p class="price">$<?php echo htmlspecialchars($game['purchase_price']); ?></p>
-                        
+                        <p class="price"><?php echo format_price($game['purchase_price']); ?></p>
+
                         <?php if(isset($_SESSION['user_id'])): ?>
                             <?php $in_wishlist = in_array($game['game_id'], $wishlist); ?>
-                            <a href="wishlist_action.php?game_id=<?php echo $game['game_id']; ?>" class="btn <?php echo $in_wishlist ? 'btn-danger' : 'btn-primary'; ?>" style="margin-bottom: 10px; display: block; text-align: center; background-color: <?php echo $in_wishlist ? 'var(--danger)' : '#4B5563'; ?>;">
+                            <a href="wishlist_action.php?game_id=<?php echo $game['game_id']; ?>" class="btn <?php echo $in_wishlist ? 'btn-danger' : 'btn-primary'; ?>" style="margin-bottom: 10px; display: block; text-align: center; <?php echo $in_wishlist ? '' : 'background-color: var(--border); color: var(--light-bg);'; ?>">
                                 <?php echo $in_wishlist ? 'Remove from Wishlist' : 'Add to Wishlist'; ?>
                             </a>
                         <?php endif; ?>

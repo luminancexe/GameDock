@@ -37,16 +37,16 @@ include "includes/header.php";
     <h3>Purchase History (PC Games)</h3>
     <?php if(count($purchases) > 0): ?>
         <table style="width: 100%; text-align: left; margin-bottom: 20px; border-collapse: collapse;">
-            <tr style="background-color: #374151;">
+            <tr style="background-color: var(--surface);">
                 <th style="padding: 10px;">Game</th>
                 <th style="padding: 10px;">Price</th>
                 <th style="padding: 10px;">Date</th>
                 <th style="padding: 10px;">Status</th>
             </tr>
             <?php foreach($purchases as $p): ?>
-            <tr style="border-bottom: 1px solid #4B5563;">
+            <tr style="border-bottom: 1px solid var(--border);">
                 <td style="padding: 10px;"><?php echo htmlspecialchars($p['title']); ?></td>
-                <td style="padding: 10px;">$<?php echo htmlspecialchars($p['total_price']); ?></td>
+                <td style="padding: 10px;"><?php echo format_price($p['total_price']); ?></td>
                 <td style="padding: 10px;"><?php echo htmlspecialchars($p['purchase_date']); ?></td>
                 <td style="padding: 10px; color: var(--success);"><?php echo htmlspecialchars($p['order_status']); ?></td>
             </tr>
@@ -59,7 +59,7 @@ include "includes/header.php";
     <h3>Rental History (PS Games)</h3>
     <?php if(count($rentals) > 0): ?>
         <table style="width: 100%; text-align: left; margin-bottom: 20px; border-collapse: collapse;">
-            <tr style="background-color: #374151;">
+            <tr style="background-color: var(--surface);">
                 <th style="padding: 10px;">Game</th>
                 <th style="padding: 10px;">Console</th>
                 <th style="padding: 10px;">Days</th>
@@ -67,7 +67,7 @@ include "includes/header.php";
                 <th style="padding: 10px;">Status</th>
             </tr>
             <?php foreach($rentals as $r): ?>
-            <tr style="border-bottom: 1px solid #4B5563;">
+            <tr style="border-bottom: 1px solid var(--border);">
                 <td style="padding: 10px;"><?php echo htmlspecialchars($r['title']); ?></td>
                 <td style="padding: 10px;"><?php echo htmlspecialchars($r['console']); ?></td>
                 <td style="padding: 10px;"><?php echo htmlspecialchars($r['rental_days']); ?></td>
@@ -83,18 +83,18 @@ include "includes/header.php";
     <h3>Games Submitted for Sale</h3>
     <?php if(count($submissions) > 0): ?>
         <table style="width: 100%; text-align: left; margin-bottom: 20px; border-collapse: collapse;">
-            <tr style="background-color: #374151;">
+            <tr style="background-color: var(--surface);">
                 <th style="padding: 10px;">Title</th>
                 <th style="padding: 10px;">Platform</th>
                 <th style="padding: 10px;">Price</th>
                 <th style="padding: 10px;">Status</th>
             </tr>
             <?php foreach($submissions as $s): ?>
-            <tr style="border-bottom: 1px solid #4B5563;">
+            <tr style="border-bottom: 1px solid var(--border);">
                 <td style="padding: 10px;"><?php echo htmlspecialchars($s['title']); ?></td>
                 <td style="padding: 10px;"><?php echo htmlspecialchars($s['platform']); ?></td>
-                <td style="padding: 10px;">$<?php echo htmlspecialchars($s['asking_price']); ?></td>
-                <td style="padding: 10px; color: #60A5FA;"><?php echo htmlspecialchars($s['status']); ?></td>
+                <td style="padding: 10px;"><?php echo format_price($s['asking_price']); ?></td>
+                <td style="padding: 10px; color: var(--accent);"><?php echo htmlspecialchars($s['status']); ?></td>
             </tr>
             <?php endforeach; ?>
         </table>

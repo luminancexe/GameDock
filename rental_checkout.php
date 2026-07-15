@@ -54,7 +54,7 @@ include "includes/header.php";
         <?php if($message): ?>
             <div class="alert alert-success"><?php echo $message; ?> <a href="profile.php">Go to Profile</a></div>
         <?php else: ?>
-            <p><strong>Daily Price:</strong> $<span id="daily-price"><?php echo htmlspecialchars($game['rent_price']); ?></span></p>
+            <p><strong>Daily Price:</strong> <?php echo currency_symbol(); ?><span id="daily-price"><?php echo number_format(convert_price($game['rent_price']), 2); ?></span></p>
             <form action="rental_checkout.php?id=<?php echo $game_id; ?>" method="POST">
                 <div class="form-group">
                     <label>Rental Duration (Days)</label>
@@ -65,7 +65,7 @@ include "includes/header.php";
                         <option value="30">30 Days</option>
                     </select>
                 </div>
-                <h3 id="total-display" style="color: var(--warning); margin-bottom: 15px;">Total: $<?php echo $game['rent_price'] * 3; ?></h3>
+                <h3 id="total-display" style="color: var(--warning); margin-bottom: 15px;">Total: <?php echo currency_symbol(); ?><?php echo number_format(convert_price($game['rent_price']) * 3, 2); ?></h3>
                 <button type="submit" class="btn btn-primary confirm-action" style="background-color: var(--warning); color: #000; width: 100%;">Confirm Rental</button>
             </form>
         <?php endif; ?>
@@ -76,7 +76,7 @@ include "includes/header.php";
 function calculateTotal() {
     const daily = parseFloat(document.getElementById('daily-price').innerText);
     const days = parseInt(document.getElementById('rental-days').value);
-    document.getElementById('total-display').innerText = "Total: $" + (daily * days).toFixed(2);
+    document.getElementById('total-display').innerText = "Total: <?php echo currency_symbol(); ?>" + (daily * days).toFixed(2);
 }
 </script>
 

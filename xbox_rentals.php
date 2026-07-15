@@ -8,23 +8,23 @@ if (isset($_SESSION['user_id'])) {
     $stmt = $pdo->prepare("SELECT game_id FROM wishlists WHERE user_id = ?");
     $stmt->execute([$_SESSION['user_id']]);
     $wishlist = $stmt->fetchAll(PDO::FETCH_COLUMN, 0);
-    
+
     $stmt = $pdo->prepare("SELECT game_id FROM rentals WHERE user_id = ? AND rental_status = 'active'");
     $stmt->execute([$_SESSION['user_id']]);
     $active_rentals = $stmt->fetchAll(PDO::FETCH_COLUMN, 0);
 }
 
-// Fetch PlayStation rentals
-$stmt = $pdo->prepare("SELECT * FROM games WHERE (platform = 'PS4' OR platform = 'PS5') AND status = 'Available'");
+// Fetch Xbox rentals
+$stmt = $pdo->prepare("SELECT * FROM games WHERE platform = 'Xbox' AND status = 'Available'");
 $stmt->execute();
-$ps_games = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$xbox_games = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <div class="container mt-4">
-    <h2>PlayStation Rentals</h2>
+    <h2>Xbox Rentals</h2>
     <div class="game-grid">
-        <?php if (count($ps_games) > 0): ?>
-            <?php foreach ($ps_games as $game): ?>
+        <?php if (count($xbox_games) > 0): ?>
+            <?php foreach ($xbox_games as $game): ?>
                 <div class="game-card rent">
                     <span class="tag rent">Rent</span>
                     <img src="uploads/<?php echo htmlspecialchars($game['image']); ?>" alt="Game Cover" onerror="this.src='https://via.placeholder.com/300x200?text=No+Image'">
@@ -54,7 +54,7 @@ $ps_games = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 </div>
             <?php endforeach; ?>
         <?php else: ?>
-            <p>No PlayStation games available for rental at the moment.</p>
+            <p>No Xbox games available for rental at the moment.</p>
         <?php endif; ?>
     </div>
 </div>

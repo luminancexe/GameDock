@@ -36,7 +36,7 @@ include "includes/header.php";
         <?php if($message): ?>
             <div class="alert alert-success"><?php echo $message; ?> <a href="profile.php">Go to Profile</a></div>
         <?php else: ?>
-            <p><strong>Price:</strong> $<?php echo htmlspecialchars($game['purchase_price']); ?></p>
+            <p><strong>Price:</strong> <?php echo format_price($game['purchase_price']); ?></p>
             <form action="buy.php?id=<?php echo $game_id; ?>" method="POST">
                 <div class="form-group">
                     <label>Payment Method</label>

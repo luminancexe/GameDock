@@ -6,7 +6,7 @@
         <p><strong>Last Updated: <?php echo date("F d, Y"); ?></strong></p>
 
         <h3 style="margin-top: 30px; color: var(--white);">1. Introduction</h3>
-        <p style="color: #D1D5DB; line-height: 1.6;">Welcome to GameHub. We are committed to protecting your personal information and your right to privacy. If you have any questions or concerns about this privacy notice or our practices with regard to your personal information, please contact us via our Contact page.</p>
+        <p style="color: #D1D5DB; line-height: 1.6;">Welcome to GameDock. We are committed to protecting your personal information and your right to privacy. If you have any questions or concerns about this privacy notice or our practices with regard to your personal information, please contact us via our Contact page.</p>
 
         <h3 style="margin-top: 30px; color: var(--white);">2. Information We Collect</h3>
         <p style="color: #D1D5DB; line-height: 1.6;">We collect personal information that you voluntarily provide to us when you register on the website, express an interest in obtaining information about us or our products and services, or otherwise when you contact us.</p>
