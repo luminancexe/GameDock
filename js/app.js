@@ -79,11 +79,32 @@ document.addEventListener("DOMContentLoaded", () => {
         const tracks = ["track1", "track2"]
             .map((id, i) => {
                 const el = document.getElementById(id);
-                return el ? { el: el, pos: 0, base: i === 0 ? -0.45 : 0.35 } : null;
+                return el ? { el: el, pos: 0, base: i === 0 ? -0.45 : 0.35, unit: 0 } : null;
             })
             .filter(Boolean);
 
+        // Make sure each row has enough duplicated copies to outspan the viewport —
+        // on very wide/zoomed-out screens two copies alone would visibly run out.
+        const fillTrack = (track) => {
+            const firstGroup = track.el.children[0];
+            if (!firstGroup) return;
+            track.unit = firstGroup.getBoundingClientRect().width || track.unit;
+            if (!track.unit) return;
+            let guard = 0;
+            while (track.el.scrollWidth < window.innerWidth + track.unit && guard < 20) {
+                const clone = firstGroup.cloneNode(true);
+                clone.setAttribute("aria-hidden", "true");
+                clone.querySelectorAll("a").forEach((a) => a.setAttribute("tabindex", "-1"));
+                track.el.appendChild(clone);
+                guard++;
+            }
+        };
+
         if (tracks.length) {
+            tracks.forEach(fillTrack);
+            window.addEventListener("load", () => tracks.forEach(fillTrack));
+            window.addEventListener("resize", () => tracks.forEach(fillTrack));
+
             let mouseNorm = 0;
             window.addEventListener("mousemove", (e) => {
                 mouseNorm = (e.clientX / window.innerWidth) * 2 - 1; // -1 (left edge) .. 1 (right edge)
@@ -93,10 +114,10 @@ document.addEventListener("DOMContentLoaded", () => {
             const stepTrack = (track, dt) => {
                 const speed = (track.base + mouseNorm * 0.85) * (dt / 16.67);
                 track.pos -= speed;
-                const half = track.el.scrollWidth / 2;
-                if (half > 0) {
-                    if (track.pos <= -half) track.pos += half;
-                    if (track.pos >= 0) track.pos -= half;
+                const unit = track.unit;
+                if (unit > 0) {
+                    if (track.pos <= -unit) track.pos += unit;
+                    if (track.pos >= 0) track.pos -= unit;
                 }
                 track.el.style.transform = `translateX(${track.pos}px)`;
             };

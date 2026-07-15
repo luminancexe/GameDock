@@ -407,7 +407,7 @@ footer p {
 /* ---------- Hero (home.php) ---------- */
 .hero {
     position: relative;
-    min-height: 88vh;
+    min-height: clamp(560px, 88vh, 860px);
     display: flex;
     flex-direction: column;
     justify-content: center;
