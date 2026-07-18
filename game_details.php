@@ -41,7 +41,7 @@ if (isset($_SESSION['user_id'])) {
             <img src="uploads/<?php echo htmlspecialchars($game['image']); ?>" alt="Game Cover" style="width: 100%; border-radius: 0.5rem;" onerror="this.src='https://via.placeholder.com/600x400?text=No+Image'">
         </div>
         <div style="flex: 2; min-width: 18.75rem;">
-            <span class="tag <?php echo $game['platform'] === 'PC' ? 'own' : 'rent'; ?>" style="position: static; display: inline-block; margin-bottom: 0.75rem;"><?php echo $game['platform'] === 'PC' ? 'Own' : 'Rent'; ?></span>
+            <span class="tag <?php echo $game['platform'] === 'PC' ? 'own' : 'rent'; ?>" style="position: static; display: inline-block; margin-bottom: 0.75rem;"><?php echo $game['platform'] === 'PC' ? 'Buy' : 'Rent'; ?></span>
             <h2><?php echo htmlspecialchars($game['title']); ?></h2>
             <p><strong>Platform:</strong> <?php echo htmlspecialchars($game['platform']); ?></p>
             <p><strong>Category:</strong> <?php echo htmlspecialchars($game['category']); ?></p>

@@ -21,7 +21,7 @@ $pc_games = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <?php if (count($pc_games) > 0): ?>
             <?php foreach ($pc_games as $game): ?>
                 <div class="game-card own">
-                    <span class="tag own">Own</span>
+                    <span class="tag own">Buy</span>
                     <img src="uploads/<?php echo htmlspecialchars($game['image']); ?>" alt="Game Cover" onerror="this.src='https://via.placeholder.com/300x200?text=No+Image'">
                     <div class="game-card-content">
                         <h3><?php echo htmlspecialchars($game['title']); ?></h3>

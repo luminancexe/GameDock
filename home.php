@@ -77,8 +77,8 @@ foreach ($all_games as $i => $g) {
                 <div class="marquee-group"<?php echo $rep ? ' aria-hidden="true"' : ''; ?>>
                     <?php foreach ($row['games'] as $game): ?>
                         <?php $is_pc = $game['platform'] === 'PC'; ?>
-                        <a class="thumb <?php echo $is_pc ? 'own' : 'rent'; ?>" href="game_details.php?id=<?php echo $game['game_id']; ?>" title="<?php echo htmlspecialchars($game['title']); ?>"<?php echo $rep ? ' tabindex="-1"' : ''; ?>>
-                            <span class="tag <?php echo $is_pc ? 'own' : 'rent'; ?>"><?php echo $is_pc ? 'Own' : 'Rent'; ?></span>
+                        <a class="thumb <?php echo $is_pc ? 'own' : 'rent'; ?>" href="game_details.php?id=<?php echo $game['game_id']; ?>" aria-label="<?php echo htmlspecialchars($game['title']); ?>"<?php echo $rep ? ' tabindex="-1"' : ''; ?>>
+                            <span class="tag <?php echo $is_pc ? 'own' : 'rent'; ?>"><?php echo $is_pc ? 'Buy' : 'Rent'; ?></span>
                             <img src="uploads/<?php echo htmlspecialchars($game['image']); ?>" alt="<?php echo htmlspecialchars($game['title']); ?>" loading="lazy" onerror="this.src='https://via.placeholder.com/300x400?text=No+Image'">
                         </a>
                     <?php endforeach; ?>

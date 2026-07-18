@@ -51,7 +51,7 @@ document.addEventListener("DOMContentLoaded", () => {
             layers.forEach(el => {
                 const d = parseFloat(el.getAttribute("data-depth"));
                 const tx = mx * d * 40;
-                const ty = my * d * 40 + sy * d * -60;
+                const ty = my * d * 40 + sy * d * -2;
                 el.style.transform = (el.dataset.baseTransform || "") + ` translate3d(${tx}px, ${ty}px, 0)`;
             });
             ticking = false;
@@ -75,11 +75,31 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Game library showcase: two rows drift on their own, mouse position steers speed/direction
     const showcase = document.getElementById("showcase");
+    if (showcase) {
+        // JS-driven hover elevation (works even in browsers without :has() support) —
+        // without this, a hovered thumb's scale-up can get painted over by the next
+        // row or the footer, since those come later in the DOM.
+        showcase.addEventListener("mouseover", (e) => {
+            const thumb = e.target.closest(".thumb");
+            if (!thumb) return;
+            const row = thumb.closest(".marquee-row");
+            if (row) row.classList.add("row-hover");
+            showcase.classList.add("showcase-hover");
+        });
+        showcase.addEventListener("mouseout", (e) => {
+            const thumb = e.target.closest(".thumb");
+            if (!thumb) return;
+            if (e.relatedTarget && thumb.contains(e.relatedTarget)) return;
+            const row = thumb.closest(".marquee-row");
+            if (row) row.classList.remove("row-hover");
+            showcase.classList.remove("showcase-hover");
+        });
+    }
     if (showcase && !reduced) {
         const tracks = ["track1", "track2"]
             .map((id, i) => {
                 const el = document.getElementById(id);
-                return el ? { el: el, pos: 0, base: i === 0 ? -0.45 : 0.35, unit: 0 } : null;
+                return el ? { el: el, pos: 0, base: i === 0 ? -0.45 : 0.35, unit: 0, dragging: false } : null;
             })
             .filter(Boolean);
 
@@ -110,16 +130,20 @@ document.addEventListener("DOMContentLoaded", () => {
                 mouseNorm = (e.clientX / window.innerWidth) * 2 - 1; // -1 (left edge) .. 1 (right edge)
             });
 
+            const wrapPos = (track) => {
+                const unit = track.unit;
+                if (unit <= 0) return;
+                while (track.pos <= -unit) track.pos += unit;
+                while (track.pos >= 0) track.pos -= unit;
+            };
+
             let lastTime = null;
             let isVisible = true;
             const stepTrack = (track, dt) => {
+                if (track.dragging) return; // manual drag owns the position for now
                 const speed = (track.base + mouseNorm * 0.85) * (dt / 16.67);
                 track.pos -= speed;
-                const unit = track.unit;
-                if (unit > 0) {
-                    if (track.pos <= -unit) track.pos += unit;
-                    if (track.pos >= 0) track.pos -= unit;
-                }
+                wrapPos(track);
                 track.el.style.transform = `translateX(${track.pos}px)`;
             };
             const tick = (t) => {
@@ -131,6 +155,66 @@ document.addEventListener("DOMContentLoaded", () => {
                 requestAnimationFrame(tick);
             };
             requestAnimationFrame(tick);
+
+            // Click-and-drag scrolling: press and hold on a row, drag left/right to
+            // scroll it manually. A plain click (no real drag) still opens the game.
+            //
+            // Important: pointer capture must NOT be taken on every pointerdown.
+            // Once an element captures the pointer, browsers retarget the resulting
+            // click event to the capturing element instead of the actual <a> under
+            // the cursor, which silently kills the link's default navigation — for
+            // every click, not just ones after a drag. So capture (and dragging)
+            // only start once real movement crosses the threshold; a plain click
+            // never engages capture at all, leaving native navigation untouched.
+            const DRAG_START_THRESHOLD = 6;
+            tracks.forEach((track) => {
+                let pointerDown = false;
+                let pointerId = null;
+                let startX = 0;
+                let startPos = 0;
+                let suppressClick = false;
+
+                track.el.addEventListener("dragstart", (e) => e.preventDefault());
+
+                track.el.addEventListener("pointerdown", (e) => {
+                    if (e.button !== undefined && e.button !== 0) return;
+                    pointerDown = true;
+                    pointerId = e.pointerId;
+                    startX = e.clientX;
+                    startPos = track.pos;
+                    suppressClick = false;
+                });
+                track.el.addEventListener("pointermove", (e) => {
+                    if (!pointerDown) return;
+                    const delta = e.clientX - startX;
+                    if (!track.dragging) {
+                        if (Math.abs(delta) < DRAG_START_THRESHOLD) return;
+                        // crossed the threshold — promote this gesture to a real drag
+                        track.dragging = true;
+                        suppressClick = true;
+                        track.el.classList.add("dragging");
+                        track.el.setPointerCapture(pointerId);
+                    }
+                    track.pos = startPos + delta;
+                    wrapPos(track);
+                    track.el.style.transform = `translateX(${track.pos}px)`;
+                });
+                const endDrag = () => {
+                    pointerDown = false;
+                    if (!track.dragging) return;
+                    track.dragging = false;
+                    track.el.classList.remove("dragging");
+                };
+                track.el.addEventListener("pointerup", endDrag);
+                track.el.addEventListener("pointercancel", endDrag);
+                track.el.addEventListener("click", (e) => {
+                    if (suppressClick) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        suppressClick = false;
+                    }
+                }, true);
+            });
 
             // Pause the animation loop entirely while scrolled away from it —
             // no point burning CPU/GPU on transforms nobody can see.

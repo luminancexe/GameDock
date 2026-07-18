@@ -9,6 +9,6 @@
             <p>&copy; <?php echo date("Y"); ?> GameDock. All rights reserved.</p>
         </div>
     </footer>
-    <script src="js/app.js"></script>
+    <script src="js/app.js?v=<?php echo filemtime(__DIR__ . '/../js/app.js'); ?>"></script>
 </body>
 </html>
