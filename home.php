@@ -46,7 +46,7 @@ foreach ($all_games as $i => $g) {
         <span class="row"><span>On Loan.</span></span>
     </h1>
 
-    <p class="hero-sub">GameDock is one storefront, two ways to play: <b>buy PC keys forever</b>, or <b>borrow PS discs by the week.</b></p>
+    <p class="hero-sub">GameDock is one storefront, two ways to play: <b>buy PC keys forever</b>, or <b>borrow PS/XBOX discs by the week.</b></p>
 
     <div class="hero-ctas">
         <a href="pc_games.php" class="cta cta-own">Browse PC Games &rarr;</a>
