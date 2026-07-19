@@ -498,6 +498,176 @@ footer p {
     margin-right: auto;
 }
 
+/* ---------- About page ---------- */
+.about-page {
+    padding: 56px 0 84px;
+}
+
+.about-hero {
+    position: relative;
+    overflow: hidden;
+    padding: 42px 0 30px;
+}
+
+.about-hero::before,
+.about-hero::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(90px);
+    opacity: 0.24;
+    pointer-events: none;
+}
+
+.about-hero::before {
+    width: 340px;
+    height: 340px;
+    top: -130px;
+    left: -120px;
+    background: var(--own);
+}
+
+.about-hero::after {
+    width: 380px;
+    height: 380px;
+    right: -160px;
+    bottom: -180px;
+    background: var(--rent);
+}
+
+.about-hero-inner {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: minmax(0, 1.3fr) minmax(280px, 0.9fr);
+    gap: 24px;
+    align-items: center;
+}
+
+.about-kicker {
+    margin: 0 0 14px;
+    color: var(--own);
+    font-size: 12px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+.about-title {
+    margin: 0;
+    font-size: clamp(40px, 6vw, 78px);
+    line-height: 0.98;
+    text-transform: uppercase;
+}
+
+.about-lead {
+    margin: 18px 0 0;
+    max-width: 62ch;
+    color: var(--muted);
+    font-size: 17px;
+    line-height: 1.75;
+}
+
+.about-actions {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin-top: 28px;
+}
+
+.about-panel {
+    background: linear-gradient(180deg, rgba(30, 37, 48, 0.94), rgba(22, 27, 38, 0.96));
+    border: 1px solid var(--border);
+    border-radius: 22px;
+    padding: 26px;
+    box-shadow: 0 24px 50px rgba(0, 0, 0, 0.28);
+}
+
+.about-panel h2 {
+    margin-bottom: 14px;
+    font-size: 22px;
+}
+
+.about-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: grid;
+    gap: 14px;
+}
+
+.about-list li {
+    position: relative;
+    padding-left: 18px;
+    color: var(--muted);
+    line-height: 1.65;
+}
+
+.about-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.75em;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--rent);
+    box-shadow: 0 0 0 4px rgba(79, 209, 217, 0.12);
+}
+
+.about-section {
+    padding-top: 36px;
+}
+
+.about-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 18px;
+}
+
+.about-card {
+    background: rgba(22, 27, 38, 0.88);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 22px;
+    height: 100%;
+}
+
+.about-card h3 {
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+
+.about-card p {
+    margin: 0;
+    color: var(--muted);
+    line-height: 1.7;
+}
+
+.about-stack {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 18px;
+    align-items: stretch;
+}
+
+.about-stack .about-card ul {
+    margin: 0;
+    padding-left: 18px;
+    color: var(--muted);
+    line-height: 1.75;
+}
+
+.about-stack .about-card ul li + li {
+    margin-top: 8px;
+}
+
+@media (max-width: 900px) {
+    .about-hero-inner {
+        grid-template-columns: 1fr;
+    }
+}
+
 /* ---------- Showcase marquee (home.php): mouse-steered, always drifting ---------- */
 .showcase {
     padding: 30px 0 20px;
