@@ -57,7 +57,7 @@ foreach ($all_games as $i => $g) {
 </section>
 
 <div class="container mt-4">
-    <div class="section-head">
+    <div class="section-head section-head-center">
         <div>
             <h2>Explore the Library</h2>
             <p>Every game on GameDock, always in motion &mdash; move your mouse left or right to steer it.</p>

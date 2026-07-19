@@ -1,9 +1,9 @@
 <?php
 $host = "localhost";
-$port = "3309";
+$port = "3307";
 $username = "root";
 $password = "";
-$dbname = "gamehub";
+$dbname = "gamedock";
 
 try {
     $pdo = new PDO("mysql:host=$host;port=$port;dbname=$dbname", $username, $password);

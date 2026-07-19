@@ -488,6 +488,15 @@ footer p {
     margin-bottom: 26px; flex-wrap: wrap;
 }
 .section-head p { color: var(--muted); margin: 8px 0 0; max-width: 460px; font-size: 14.5px; }
+.section-head-center {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.section-head-center p {
+    margin-left: auto;
+    margin-right: auto;
+}
 
 /* ---------- Showcase marquee (home.php): mouse-steered, always drifting ---------- */
 .showcase {
