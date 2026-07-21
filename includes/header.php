@@ -40,12 +40,8 @@ require_once __DIR__ . "/currency.php";
                     <li><a href="wishlist.php">Wishlist</a></li>
                     <li><a href="sell_game.php">Sell Game</a></li>
                     <li><a href="profile.php">My Profile</a></li>
-                    <li><a href="logout.php" style="color:var(--danger)">Logout</a></li>
-                <?php else: ?>
-                    <li><a href="login.php">Login / Register</a></li>
-                <?php endif; ?>
-                <li><a href="contact.php">Contact</a></li>
-                <li class="dropdown">
+                    <li><a href="contact.php">Contact</a></li>
+                    <li class="dropdown">
                     <?php $cur = current_currency(); ?>
                     <button class="dropdown-toggle" aria-haspopup="true" aria-expanded="false"><?php echo $cur; ?></button>
                     <ul class="dropdown-menu">
@@ -53,6 +49,12 @@ require_once __DIR__ . "/currency.php";
                         <li><a href="set_currency.php?currency=BDT" class="<?php echo $cur === 'BDT' ? 'active' : ''; ?>">BDT</a></li>
                     </ul>
                 </li>
+                    <li><a href="logout.php" style="color:var(--danger)">Logout</a></li>
+                <?php else: ?>
+                    <li><a href="login.php">Login / Register</a></li>
+                <?php endif; ?>
+                
+                
             </ul>
             <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
                 <span></span><span></span><span></span>
