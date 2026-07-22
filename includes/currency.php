@@ -14,6 +14,11 @@ const CURRENCY_RATES = [
     'CNY' => 7.2,
     'INR' => 83,
     'BDT' => 118,
+    'CAD' => 1.36,
+    'AUD' => 1.52,
+    'CHF' => 0.88,
+    'KRW' => 1360,
+    'SEK' => 10.4,
 ];
 const CURRENCY_SYMBOLS = [
     'USD' => '$',
@@ -23,6 +28,11 @@ const CURRENCY_SYMBOLS = [
     'CNY' => 'CN¥',
     'INR' => '₹',
     'BDT' => '৳',
+    'CAD' => 'CA$',
+    'AUD' => 'AU$',
+    'CHF' => 'CHF',
+    'KRW' => '₩',
+    'SEK' => 'kr',
 ];
 
 function current_currency() {

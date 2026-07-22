@@ -1,4 +1,12 @@
 // app.js
+if ('scrollRestoration' in history) {
+    history.scrollRestoration = 'manual';
+}
+
+window.addEventListener('pageshow', function() {
+    window.scrollTo(0, 0);
+});
+
 $(document).ready(function() {
     // Basic confirmation popup for actions
     $(".confirm-action").on("click", function(e) {
