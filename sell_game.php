@@ -48,7 +48,7 @@ include "includes/header.php";
                     <option value="PC">PC</option>
                     <option value="PS4">PS4</option>
                     <option value="PS5">PS5</option>
-                    <option value="Xbox Series X">Xbox SeriesX</option>
+                    <option value="Xbox Series X">Xbox Series X</option>
                     <option value="Xbox Series S">Xbox Series S</option>
                 </select>
             </div>
