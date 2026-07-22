@@ -35,19 +35,19 @@ $techStack = [
 
 $authors = [
 	[
-		'name' => '@luminancexe',
+		'name' => 'Noman',
 		'url' => 'https://github.com/luminancexe',
 	],
 	[
-		'name' => '@abrar-0992',
+		'name' => 'Abrar',
 		'url' => 'https://github.com/abrar-0992',
 	],
 	[
-		'name' => '@Saadmantheretroenjoyer',
+		'name' => 'Saadman',
 		'url' => 'https://github.com/Saadmantheretroenjoyer',
 	],
 	[
-		'name' => '@ansm-muaaz',
+		'name' => 'Muaaz',
 		'url' => 'https://github.com/ansm-muaaz',
 	],
 ];
