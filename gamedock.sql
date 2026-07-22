@@ -225,7 +225,7 @@ CREATE TABLE `sell_games` (
   `sell_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `user_id` int(10) unsigned NOT NULL,
   `title` varchar(150) NOT NULL,
-  `platform` enum('PC','PS4','PS5') NOT NULL,
+  `platform` enum('PC','PS4','PS5','Xbox Series X','Xbox Series S') NOT NULL,
   `product_type` enum('Game Key','Disc','Digital License','Other') DEFAULT 'Other',
   `asking_price` decimal(10,2) NOT NULL,
   `description` text NOT NULL,
