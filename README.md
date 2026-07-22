@@ -40,3 +40,4 @@ GAMEDOCK appears to cover:
 - GitHub: [@luminancexe](https://github.com/luminancexe)
 - GitHub: [@abrar-0992](https://github.com/abrar-0992)
 - GitHub: [@Saadmantheretroenjoyer](https://github.com/Saadmantheretroenjoyer)
+- GitHub: [@ansm-muaaz](https://github.com/ansm-muaaz)
