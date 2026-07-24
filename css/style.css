@@ -1327,6 +1327,83 @@ body.custom-cursor-active * {
     .cookie-banner.hide { animation: none; display: none; }
 }
 
+/* ===== Policy & FAQ Pages ===== */
+.policy-container {
+    background-color: rgba(31, 41, 55, 0.85);
+    backdrop-filter: blur(0.625rem);
+    -webkit-backdrop-filter: blur(0.625rem);
+    border: 0.0625rem solid rgba(255, 255, 255, 0.05);
+    padding: 2.5rem;
+    border-radius: 0.5rem;
+    margin-bottom: 3.125rem;
+}
+
+.policy-title {
+    color: var(--accent);
+    margin-bottom: 1.25rem;
+}
+
+.policy-subtitle {
+    color: #D1D5DB;
+    line-height: 1.6;
+    margin-top: 1rem;
+}
+
+.policy-section-title {
+    margin-top: 1.875rem;
+    color: var(--white);
+}
+
+.policy-text {
+    color: #D1D5DB;
+    line-height: 1.6;
+}
+
+.policy-text-intro {
+    color: #D1D5DB;
+    line-height: 1.6;
+    margin-top: 1rem;
+}
+
+.policy-list {
+    color: #D1D5DB;
+    line-height: 1.6;
+    margin-left: 1.25rem;
+}
+
+.policy-list li {
+    margin-bottom: 0.5rem;
+}
+
+.policy-link {
+    color: var(--accent);
+    font-weight: 600;
+}
+
+.faq-container {
+    max-width: 50rem;
+}
+
+.faq-title {
+    color: var(--accent);
+    margin-bottom: 1.875rem;
+}
+
+.faq-item {
+    margin-bottom: 1.5625rem;
+    padding-bottom: 0.9375rem;
+    border-bottom: 0.0625rem solid rgba(255, 255, 255, 0.1);
+}
+
+.faq-item-title {
+    color: var(--success);
+    margin-bottom: 0.625rem;
+}
+
+.faq-item-text {
+    color: #D1D5DB;
+}
+
 /* Utility */
 .text-center { text-align: center; }
 .mt-4 { margin-top: 20px; }
