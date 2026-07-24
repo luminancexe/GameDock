@@ -48,15 +48,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </div>
                 <div class="form-group">
                     <label>Email *</label>
-                    <input type="email" name="email" class="form-control" required>
+                    <input type="email" name="email" class="form-control" required
+                        pattern="[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}"
+                        title="Enter a valid email address, e.g. name@example.com">
                 </div>
                 <div class="form-group">
                     <label>Phone</label>
-                    <input type="text" name="phone" class="form-control">
+                    <input type="text" name="phone" class="form-control"
+                        pattern="\+?[0-9\s]{7,15}"
+                        title="Digits and spaces only, with an optional leading +, 7–15 characters">
                 </div>
                 <div class="form-group">
                     <label>Password *</label>
-                    <input type="password" name="password" class="form-control" required>
+                    <input type="password" name="password" class="form-control" required
+                        pattern="(?=.*[A-Za-z])(?=.*\d).{8,}"
+                        title="At least 8 characters, including at least one letter and one number">
                 </div>
                 <button type="submit" class="btn btn-primary" style="width: 100%;">Register</button>
             </form>

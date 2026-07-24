@@ -60,7 +60,9 @@ include "includes/header.php";
         <form action="login.php" method="POST">
             <div class="form-group">
                 <label>Email</label>
-                <input type="email" name="email" class="form-control" required>
+                <input type="email" name="email" class="form-control" required
+                    pattern="[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}"
+                    title="Enter a valid email address, e.g. name@example.com">
             </div>
             <div class="form-group">
                 <label>Password</label>
