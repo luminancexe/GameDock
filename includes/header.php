@@ -87,7 +87,7 @@ if (isset($_SESSION['user_id'])) {
                 <li class="dropdown <?php echo $active_nav === 'rentals' ? 'active' : ''; ?>">
                     <button class="dropdown-toggle <?php echo $active_nav === 'rentals' ? 'active' : ''; ?>" aria-haspopup="true" aria-expanded="false">Rentals</button>
                     <ul class="dropdown-menu">
-                        <li><a href="ps_rentals.php" class="<?php echo $current_page === 'ps_rentals.php' ? 'active' : ''; ?>">PS5</a></li>
+                        <li><a href="ps_rentals.php" class="<?php echo $current_page === 'ps_rentals.php' ? 'active' : ''; ?>">PlayStation</a></li>
                         <li><a href="xbox_rentals.php" class="<?php echo $current_page === 'xbox_rentals.php' ? 'active' : ''; ?>">Xbox</a></li>
                     </ul>
                 </li>
