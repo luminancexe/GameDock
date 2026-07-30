@@ -23,7 +23,7 @@ Compared to earlier iterations, the project now shows increased frontend depth, 
 
 ## Development Context
 
-- Repository: `luminancexe/GAMEDOCK`
+- Repository: `luminancexe/GameDock`
 - Project type: PHP web application with static/frontend assets
 
 ## Scope of the Repository
